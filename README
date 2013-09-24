@@ -1,0 +1,25 @@
+README
+
+Alex's Numerical Differentiation Library
+
+Inlcuded is a set of libraries for computing differences. This library includes:
+ODEs
+- Euler Method
+- Backward Euler Method
+- Huen's Mehotd
+- Runge-Kutta
+- Predictor-Corrector Method
+- Multivalue Method
+- Shooting Method
+- Finit Difference Method
+- Collocation Method
+- Galerkin Method
+
+PDEs
+- Finite Difference Methods
+- Finite Element Methods
+- Sparse Factorization Methods
+- Jacobi Method
+- Gauss-Seidel Method
+- Successive Over Relaxation
+- Conjugate Gradient Method
