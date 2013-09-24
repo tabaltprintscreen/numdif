@@ -8,22 +8,40 @@
 #include <stdio.h>
 #include "numdif.h"
 
-// Huen's Method for ODEs that return a double
+// cdf_3dF2d(double x_k, double y_k, double x_step, double (*F)(double, double)){
+	double diff;
+	diff = F(x_k + x_step, y_k) - F(x_k - x_step, y_k);
+	return (diff / ( 2.0 * x_step));
 
+}
+
+
+// Huen's Method for ODEs that return a double
+double heuns_3dF2d(double x_k, double y_k, double x_step, double (*differential)(double, doubel)){
+	
+	double k1, k2, half_step;
+
+	half_step = x_step / 2.0;
+	k1 = differential(x_k, y_k);
+	k2 = differential(x_k + x_step, y_k + (x_step * k1));
+
+	return ( y_k + half_step * (k1+k2) );	
+	
+}
 
 
 // Runge-Kutta for ODEs that return a double
-double rk_od(double x_k, double y_k, double time_step, double (*differential)(double,double) ){
+double rk_3dF2d(double x_k, double y_k, double x_step, double (*differential)(double,double) ){
 	
-	double k1, k2, k3, k4, y_next, half_step;
+	double k1, k2, k3, k4, half_step;
 	
-	half_step = time_step / 2.0;
+	half_step = x_step / 2.0;
 	k1 = (*differential)(x_k, y_k);
 	k2 = (*differential)( x_k + half_step, y_k + half_step * k1 );
 	k3 = (*differential)( x_k + half_step, y_k + half_step * k2 );
-	k4 = (*differential)( x_k + time_step, y_k + time_step * k3 ); 
+	k4 = (*differential)( x_k + x_step, y_k + x_step * k3 ); 
 
-	return(  y_k + (time_step / 6.0)*(k1 + (2*k2) + (2*k3) + k4) );
+	return(  y_k + (x_step / 6.0)*(k1 + (2*k2) + (2*k3) + k4) );
 }
 
 /***************************************************************

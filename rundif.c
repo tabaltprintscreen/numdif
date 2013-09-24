@@ -26,7 +26,7 @@ double baseline_rk(double t) {
 
 int main(int argc, char * argv[]){
 
-	double i, iterations, old_y, time_step, next_y;
+	double i, iterations old_y, time_step, next_y;
 
 	if( argc != 3 + 1) {
 		printf("Usage: ./rundif [y at 0] [time step] [number of steps]");
@@ -40,7 +40,7 @@ int main(int argc, char * argv[]){
 	iterations = (iterations+1.0) * time_step;
 
 	for( i=0.0 ; i < iterations; i+= time_step  ){		
-		next_y = rk_od( i, old_y, time_step, test_rk );
+		next_y = rk_2d( i, old_y, time_step, test_rk );
 		printf("%f %f %f\n", i, next_y, baseline_rk(i));
 		old_y = next_y;
 	}

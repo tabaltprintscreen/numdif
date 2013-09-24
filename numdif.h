@@ -1,3 +1,4 @@
 #include <math.h>
 
-double rk_od(double,double,double, double (*)(double, double));
+double huens_2d(double, double, double, double (*)(double, double));
+double rk_2d(double,double,double, double (*)(double, double));
