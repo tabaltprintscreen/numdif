@@ -26,13 +26,13 @@ newtons_3dF
 */
 
 // Huen's Method for ODEs that return a double
-double heuns_3dF2d(double x_k, double y_k, double x_step, double (*differential)(double, doubel)){
+double heuns_3dF2d(double x_k, double y_k, double x_step, double (*differential)(double, double)){
 	
 	double k1, k2, half_step;
 
 	half_step = x_step / 2.0;
 	k1 = differential(x_k, y_k);
-	k2 = differential(x_k + x_step, y_k + (x_step * k1));
+	k2 = differential( (x_k + x_step), (y_k + (x_step * k1)) );
 
 	return ( y_k + half_step * (k1+k2) );	
 	
