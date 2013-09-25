@@ -27,20 +27,21 @@ double baseline_rk(double t) {
 
 int main(int argc, char * argv[]){
 
-	double i, x_start, x_end, old_rky, x_step, next_y;
+	double i, x_start, x_end, old_rky, old_heunsy, x_step, next_y;
 
 	if( argc != 2 + 1) {
 		printf("Usage: ./rundif x_step x_end\n");
 		exit(-1);
 	}
 
-	old_rky = 1.0;
+	old_rky = old_heunsy = 1.0;
 	x_start = 0.0;
 	sscanf(argv[1], "%lf", &x_step );
 	sscanf(argv[2], "%lf", &x_end );
 
 	for( i= x_start; i < x_end + x_step; i+= x_step  ){		
-		printf("%f %f %f\n", i, old_rky, baseline_rk(i));
+		printf("%f %f %f %f\n", i, old_heunsy, old_rky, baseline_rk(i));
+		old_heunsy = heuns_3dF2d( i, old_heunsy, x_step, test_rk );
 		old_rky = rk_3dF2d( i, old_rky, x_step, test_rk );
 	}
 
