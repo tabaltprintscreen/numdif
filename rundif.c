@@ -26,21 +26,20 @@ double baseline_rk(double t) {
 
 int main(int argc, char * argv[]){
 
-	double i, iterations old_y, time_step, next_y;
+	double i, x_start, x_end, old_y, x_step, next_y;
 
 	if( argc != 3 + 1) {
-		printf("Usage: ./rundif [y at 0] [time step] [number of steps]");
+		printf("Usage: ./rundif y_at_start x_start x_step x_end");
 		exit(-1);
 	}
 
 	sscanf(argv[1], "%lf", &old_y );
-	sscanf(argv[2], "%lf", &time_step );
-	sscanf(argv[3], "%lf", &iterations );
+	sscanf(argv[2], "%lf", &x_start );
+	sscanf(argv[3], "%lf", &x_step );
+	sscanf(argv[4], "%lf", &x_end );
 
-	iterations = (iterations+1.0) * time_step;
-
-	for( i=0.0 ; i < iterations; i+= time_step  ){		
-		next_y = rk_2d( i, old_y, time_step, test_rk );
+	for( i= x_start; i < x_end + x_step; i+= x_step  ){		
+		next_y = rk_2d( i, old_y, x_step, test_rk );
 		printf("%f %f %f\n", i, next_y, baseline_rk(i));
 		old_y = next_y;
 	}

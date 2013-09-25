@@ -8,13 +8,22 @@
 #include <stdio.h>
 #include "numdif.h"
 
-// cdf_3dF2d(double x_k, double y_k, double x_step, double (*F)(double, double)){
+/* This may seem a little over board but if the derivatice is just in terms of 
+ * x then call cdf_4dF2d( x, y, step, 0, F );
+cdf_4dF2d(double x_k, double y_k, double x_step, double y_step, double (*F)(double, double)){
 	double diff;
-	diff = F(x_k + x_step, y_k) - F(x_k - x_step, y_k);
+	diff = F(x_k + x_step, y_k + y_step) - F(x_k - x_step, y_k);
 	return (diff / ( 2.0 * x_step));
 
 }
 
+
+/*
+Due to the 
+// Newton's Method 
+newtons_3dF
+
+*/
 
 // Huen's Method for ODEs that return a double
 double heuns_3dF2d(double x_k, double y_k, double x_step, double (*differential)(double, doubel)){
